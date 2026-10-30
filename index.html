@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ruit · Cabecera A (borrador)</title>
+<meta name="description" content="Propuesta de cabecera A para ruit.es: publica cada artículo una vez y véndelo en Wallapop, Vinted y eBay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800&display=swap">
+<style>
+  :root {
+    --accent: #1F7A22;
+    --brand: #2E9F2B;
+    --underline: #4CC34A;
+    --ink: #111811;
+    --ink-2: #2A332A;
+    --muted: #3B473C;
+    --muted-2: #5B6B5C;
+    --bg: #F2F7EF;
+    --surface: #FFFFFF;
+    --line: #DCE7D8;
+    --line-2: #D5DED3;
+    --tint: #E5F4E2;
+    --tint-ink: #1E5F21;
+    --photo: #E7EFE4;
+    --star: #E8A317;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: var(--tint-ink); }
+  a:hover { color: #123D14; }
+  svg { flex-shrink: 0; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding-inline: 24px; }
+
+  /* Header */
+  .site-header { position: sticky; top: 0; z-index: 10; background: var(--bg); }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; padding-block: 20px; }
+  .logo { font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -0.04em; color: var(--brand); text-decoration: none; }
+  .logo:hover { color: var(--brand); }
+  .nav { display: flex; gap: 8px 28px; font-size: 15px; font-weight: 500; }
+  .nav a, .header-actions .link { color: var(--ink-2); text-decoration: none; }
+  .nav a:hover, .header-actions .link:hover { color: var(--ink); text-decoration: underline; }
+  .header-actions { display: flex; align-items: center; gap: 20px; font-size: 15px; font-weight: 500; }
+  .menu-btn { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; font-weight: 600; text-decoration: none; min-height: 44px; }
+  .btn-primary { background: var(--accent); color: #FFFFFF; }
+  .btn-primary:hover { background: #17631A; color: #FFFFFF; }
+  .btn-secondary { background: var(--surface); color: var(--ink); border: 1px solid var(--line-2); }
+  .btn-secondary:hover { border-color: #9DB59A; color: var(--ink); }
+  .btn-sm { padding: 12px 20px; }
+  .btn-lg { padding: 16px 26px; font-size: 17px; min-height: 52px; }
+
+  /* Hero */
+  .hero .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; padding-block: 48px 80px; }
+  .hero-copy { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  .eyebrow { align-self: flex-start; background: var(--surface); border: 1px solid #CFE3CA; color: var(--tint-ink); font-size: 14px; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+  h1 { margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 66px); line-height: 1.03; letter-spacing: -0.035em; }
+  h1 .hl { text-decoration: underline; text-decoration-color: var(--underline); text-decoration-thickness: 0.11em; text-underline-offset: 0.09em; }
+  .lead { margin: 0; font-size: 20px; line-height: 1.5; color: var(--muted); max-width: 540px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px; }
+  .reassure { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); list-style: none; margin: 0; padding: 0; }
+  .reassure li { display: inline-flex; align-items: center; gap: 6px; }
+  .proof { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-top: 16px; border-top: 1px solid #D9E6D5; font-size: 14px; color: var(--ink-2); }
+  .proof > span { display: inline-flex; align-items: center; gap: 6px; }
+  .product-info { display: flex; flex-direction: column; gap: 12px; }
+
+  /* Visual */
+  .hero-visual { flex: 1 1 520px; min-width: 0; display: flex; justify-content: center; }
+  .fan { display: grid; grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr); align-items: center; width: 100%; max-width: 600px; }
+  .product { background: var(--surface); border-radius: 20px; padding: 16px; border: 1px solid var(--line); box-shadow: 0 20px 40px -24px rgba(20, 60, 20, 0.35); display: flex; flex-direction: column; gap: 12px; }
+  .photo { height: 180px; border-radius: 12px; background: var(--photo); display: flex; align-items: center; justify-content: center; color: var(--muted-2); font-size: 13px; font-weight: 500; }
+  .product-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .product-name { font-weight: 600; font-size: 15px; display: block; }
+  .product-meta { font-size: 13px; color: var(--muted-2); }
+  .price { font-weight: 700; font-size: 18px; }
+  .created { background: var(--tint); color: var(--tint-ink); border-radius: 10px; padding: 10px; text-align: center; font-size: 14px; font-weight: 600; }
+  .connector { width: 72px; height: 320px; }
+  .connector-v { display: none; }
+  .channels { display: flex; flex-direction: column; gap: 16px; list-style: none; margin: 0; padding: 0; }
+  .channel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 68px; }
+  .channel-name { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; background: var(--tint); color: var(--tint-ink); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
+  .sync-note { display: none; }
+  .mobile-bar { display: none; }
+
+  /* Mobile */
+  @media (max-width: 760px) {
+    .wrap { padding-inline: 16px; }
+    .site-header { border-bottom: 1px solid var(--line); }
+    .site-header .wrap { padding-block: 12px; flex-wrap: wrap; }
+    .logo { font-size: 28px; }
+    .nav { display: none; order: 3; width: 100%; flex-direction: column; gap: 0; padding-bottom: 8px; }
+    .nav.open { display: flex; }
+    .nav a { padding: 12px 4px; border-top: 1px solid var(--line); min-height: 44px; }
+    .header-actions { gap: 8px; }
+    .header-actions .link { display: none; }
+    .menu-btn { display: inline-flex; }
+
+    .hero .wrap { padding-block: 28px 32px; gap: 32px; padding-inline: 20px; }
+    .hero-copy { gap: 18px; flex-basis: 100%; }
+    .eyebrow { font-size: 13px; padding: 6px 12px; }
+    .lead { font-size: 17px; }
+    .ctas { flex-direction: column; gap: 10px; }
+    .ctas .btn { width: 100%; }
+    .reassure { justify-content: center; font-size: 13px; gap: 6px 16px; }
+    .proof { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; border-top: 0; padding-top: 6px; }
+    .proof > span { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; flex-direction: column; text-align: center; font-size: 12px; color: #4A574B; }
+    .proof > span.users { grid-column: 1 / -1; border: 0; background: none; padding: 0; font-size: 14px; color: var(--muted); }
+
+    .hero-visual { flex-basis: 100%; }
+    .fan { display: flex; flex-direction: column; align-items: stretch; }
+    .product { flex-direction: row; align-items: center; gap: 14px; padding: 14px; }
+    .photo { width: 96px; height: 96px; flex: 0 0 96px; font-size: 12px; }
+    .product-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .created { align-self: flex-start; border-radius: 999px; padding: 3px 10px; font-size: 12px; }
+    .product-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .connector { display: none; }
+    .connector-v { display: block; width: 100%; height: 56px; }
+    .channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .channel { flex-direction: column; align-items: flex-start; padding: 12px; min-height: 76px; }
+    .channel-name { font-size: 14px; gap: 8px; }
+    .badge { font-size: 12px; padding: 3px 9px; }
+    .sync-note { display: flex; align-items: center; gap: 10px; margin-top: 14px; background: var(--ink); color: #FFFFFF; border-radius: 14px; padding: 12px 14px; font-size: 14px; }
+
+    body { padding-bottom: 92px; }
+    .mobile-bar { display: flex; flex-direction: column; gap: 4px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 16px 14px; }
+    .mobile-bar .btn { width: 100%; min-height: 50px; font-size: 16px; }
+    .mobile-bar small { text-align: center; font-size: 12px; color: #4A574B; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="https://ruit.es/" class="logo" aria-label="Ruit, inicio">ruit</a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="https://ruit.es/marketplaces/">Marketplaces</a>
+      <a href="https://ruit.es/#funciones">Funciones</a>
+      <a href="https://ruit.es/pricing/">Precios</a>
+      <a href="https://ruit.es/contact/">Contacto</a>
+    </nav>
+    <div class="header-actions">
+      <a href="https://ruit.es/" class="link">Iniciar sesión</a>
+      <a href="https://ruit.es/pricing/" class="btn btn-primary btn-sm">Prueba gratis</a>
+      <button type="button" class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" id="menu-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">Para revendedores y tiendas de segunda mano</span>
+      <h1>Sube cada artículo <span class="hl">una vez</span>. Véndelo en Wallapop, Vinted y eBay.</h1>
+      <p class="lead">Cuando se vende en uno, Ruit lo retira de los demás. Sin ventas duplicadas y sin copiar y pegar.</p>
+      <div class="ctas">
+        <a href="https://ruit.es/pricing/" class="btn btn-primary btn-lg">Prueba gratis 14 días
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://ruit.es/" class="btn btn-secondary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></svg>
+          Ver cómo funciona (1 min)
+        </a>
+      </div>
+      <ul class="reassure">
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9F2B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sin tarjeta</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9F2B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Cancela cuando quieras</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2E9F2B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Plan gratis disponible</li>
+      </ul>
+      <div class="proof">
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="#E8A317" stroke="#E8A317" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg><strong>4,5</strong> en App Store</span>
+        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="#E8A317" stroke="#E8A317" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg><strong>4,8</strong> en Chrome Web Store</span>
+        <span class="users"><span><strong>[N.º]</strong> vendedores ya publican con Ruit</span></span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="Ejemplo: un artículo publicado en cuatro canales" role="img">
+      <div class="fan">
+        <div class="product">
+          <div class="photo">[Foto del artículo]</div>
+          <div class="product-info">
+            <div class="product-row">
+              <div>
+                <span class="product-name">Zapatillas retro · T42</span>
+                <span class="product-meta">Buen estado</span>
+              </div>
+              <span class="price">39 €</span>
+            </div>
+            <span class="created">Creado una sola vez</span>
+          </div>
+        </div>
+
+        <svg class="connector" viewBox="0 0 72 320" fill="none" stroke="#7BC777" stroke-width="2" stroke-dasharray="4 5" aria-hidden="true">
+          <path d="M0 160 C 40 160, 32 34, 72 34"/><path d="M0 160 C 40 160, 32 118, 72 118"/><path d="M0 160 C 40 160, 32 202, 72 202"/><path d="M0 160 C 40 160, 32 286, 72 286"/>
+        </svg>
+        <svg class="connector-v" viewBox="0 0 350 56" preserveAspectRatio="none" fill="none" stroke="#7BC777" stroke-width="2" stroke-dasharray="4 5" aria-hidden="true">
+          <path d="M175 0 C 175 30, 88 26, 88 56"/><path d="M175 0 C 175 30, 262 26, 262 56"/>
+        </svg>
+
+        <ul class="channels">
+          <li class="channel"><span class="channel-name"><span class="dot" style="background:#13C1AC"></span>Wallapop</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
+          <li class="channel"><span class="channel-name"><span class="dot" style="background:#007782"></span>Vinted</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
+          <li class="channel"><span class="channel-name"><span class="dot" style="background:#E53238"></span>eBay</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
+          <li class="channel"><span class="channel-name"><span class="dot" style="background:#5E8E3E"></span>Tu tienda Shopify</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
+        </ul>
+
+        <div class="sync-note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7BD877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.7M20 4v4.7h-4.7M20 12a8 8 0 0 1-13.7 5.6L4 15.3M4 20v-4.7h4.7"/></svg>
+          <span>¿Se vende en Vinted? Ruit lo retira del resto.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="mobile-bar">
+  <a href="https://ruit.es/pricing/" class="btn btn-primary">Prueba gratis 14 días</a>
+  <small>Sin tarjeta · Cancela cuando quieras</small>
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('menu-btn');
+    var nav = document.getElementById('nav');
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+  })();
+</script>
+</body>
+</html>
