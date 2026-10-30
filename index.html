@@ -101,15 +101,6 @@
   .st-pub { background: var(--tint); color: var(--tint-ink); }
   .st-sold { background: var(--accent); color: #FFFFFF; opacity: 0; }
   .st-gone { background: #ECEFEB; color: #3A443B; opacity: 0; }
-  .steps-row { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 28px; }
-  .steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; list-style: none; margin: 0; padding: 0; }
-  .step { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px 7px 7px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #4A574B; }
-  .step b { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; background: #DCE7D8; color: var(--ink); }
-  .step.s2 { background: var(--ink); color: #FFFFFF; }
-  .pause-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
-  .pause-btn .i-play { display: none; }
-  .hero-visual.paused .pause-btn .i-play { display: block; }
-  .hero-visual.paused .pause-btn .i-pause { display: none; }
 
   /* Animación: crear → publicar en 4 canales → vender en Vinted y retirar del resto */
   .photo img       { animation: photoIn var(--loop) ease-in-out infinite both; }
@@ -135,10 +126,6 @@
   .ch2 .st-sold { animation: finalSold var(--loop) linear infinite both; }
   .ch1 .st-gone, .ch3 .st-gone, .ch4 .st-gone { animation: finalGone var(--loop) linear infinite both; }
   .ch2 { animation: cardSold var(--loop) ease-in-out infinite both; }
-  .step.s1 { animation: step1 var(--loop) linear infinite both; }
-  .step.s2 { animation: step2 var(--loop) linear infinite both; }
-  .step.s3 { animation: step3 var(--loop) linear infinite both; }
-  .hero-visual.paused, .hero-visual.paused * { animation-play-state: paused !important; }
 
   @keyframes photoIn { 0% { opacity: 0; transform: translateY(10px) scale(0.92); } 7%, 92% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; transform: translateY(10px) scale(0.92); } }
   @keyframes productPress {
@@ -171,13 +158,9 @@
   @keyframes finalGone { 0%, 59% { opacity: 0; } 61%, 90% { opacity: 1; } 95%, 100% { opacity: 0; } }
   @keyframes cardSold { 0%, 54% { border-color: #DCE7D8; box-shadow: 0 0 0 0 rgba(46, 159, 43, 0); } 57%, 90% { border-color: #2E9F2B; box-shadow: 0 0 0 4px rgba(46, 159, 43, 0.18); } 95%, 100% { border-color: #DCE7D8; box-shadow: 0 0 0 0 rgba(46, 159, 43, 0); } }
 
-  @keyframes step1 { 0%, 13% { background: #111811; color: #FFFFFF; } 15%, 96% { background: transparent; color: #4A574B; } 98%, 100% { background: #111811; color: #FFFFFF; } }
-  @keyframes step2 { 0%, 13% { background: transparent; color: #4A574B; } 15%, 54% { background: #111811; color: #FFFFFF; } 56%, 100% { background: transparent; color: #4A574B; } }
-  @keyframes step3 { 0%, 54% { background: transparent; color: #4A574B; } 56%, 92% { background: #111811; color: #FFFFFF; } 95%, 100% { background: transparent; color: #4A574B; } }
 
   @media (prefers-reduced-motion: reduce) {
     .hero-visual, .hero-visual * { animation: none !important; }
-    .pause-btn { display: none; }
   }
   .mobile-bar { display: none; }
 
@@ -221,10 +204,6 @@
     .thumb { width: 34px; height: 34px; flex-basis: 34px; }
     .status { justify-items: start; }
     .st { font-size: 12px; padding: 3px 9px; }
-    .steps-row { margin-top: 18px; }
-    .steps { flex-direction: column; align-items: stretch; width: 100%; }
-    .step { font-size: 14px; }
-    .pause-btn { order: -1; align-self: flex-end; }
 
     body { padding-bottom: 92px; }
     .mobile-bar { display: flex; flex-direction: column; gap: 4px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 16px 14px; }
@@ -329,18 +308,6 @@
             <span class="status"><span class="st st-pending" aria-hidden="true">En cola</span><span class="st st-pub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span><span class="st st-gone" aria-hidden="true">Retirado</span></span>
           </li>
         </ul>
-
-        <div class="steps-row">
-          <ol class="steps" aria-hidden="true">
-            <li class="step s1"><b>1</b>Lo creas una vez</li>
-            <li class="step s2"><b>2</b>Se publica en 4 canales</li>
-            <li class="step s3"><b>3</b>Se vende y se retira del resto</li>
-          </ol>
-          <button type="button" class="pause-btn" id="pause-btn" aria-pressed="false" aria-label="Pausar animación">
-            <svg class="i-pause" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>
-            <svg class="i-play" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -359,14 +326,6 @@
       var open = nav.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-    });
-
-    var visual = document.getElementById('hero-visual');
-    var pause = document.getElementById('pause-btn');
-    pause.addEventListener('click', function () {
-      var paused = visual.classList.toggle('paused');
-      pause.setAttribute('aria-pressed', paused ? 'true' : 'false');
-      pause.setAttribute('aria-label', paused ? 'Reanudar animación' : 'Pausar animación');
     });
 
     // Contador de vendedores: sube de 0 a la cifra al entrar en pantalla
