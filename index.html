@@ -70,23 +70,114 @@
   .product-info { display: flex; flex-direction: column; gap: 12px; }
 
   /* Visual */
-  .hero-visual { flex: 1 1 520px; min-width: 0; display: flex; justify-content: center; }
-  .fan { display: grid; grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr); align-items: center; width: 100%; max-width: 600px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .hero-visual { --loop: 10s; flex: 1 1 560px; min-width: 0; display: flex; justify-content: center; }
+  .fan { display: grid; grid-template-columns: minmax(0, 0.95fr) 64px minmax(0, 1.2fr); align-items: center; width: 100%; max-width: 680px; }
   .product { background: var(--surface); border-radius: 20px; padding: 16px; border: 1px solid var(--line); box-shadow: 0 20px 40px -24px rgba(20, 60, 20, 0.35); display: flex; flex-direction: column; gap: 12px; }
-  .photo { height: 180px; border-radius: 12px; background: var(--photo); display: flex; align-items: center; justify-content: center; color: var(--muted-2); font-size: 13px; font-weight: 500; }
+  .photo { height: 180px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: contain; }
   .product-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
   .product-name { font-weight: 600; font-size: 15px; display: block; }
   .product-meta { font-size: 13px; color: var(--muted-2); }
   .price { font-weight: 700; font-size: 18px; }
-  .created { background: var(--tint); color: var(--tint-ink); border-radius: 10px; padding: 10px; text-align: center; font-size: 14px; font-weight: 600; }
-  .connector { width: 72px; height: 320px; }
-  .connector-v { display: none; }
+  .created { display: grid; }
+  .created > span { grid-area: 1 / 1; border-radius: 10px; padding: 10px; text-align: center; font-size: 14px; font-weight: 600; }
+  .created .c-new { background: var(--tint); color: var(--tint-ink); }
+  .created .c-sold { background: var(--accent); color: #FFFFFF; opacity: 0; }
+  .connector { width: 64px; height: 320px; overflow: visible; }
+  .connector-v { display: none; overflow: visible; }
+  .connector .base, .connector-v .base { stroke: #BFD9BC; stroke-width: 2; stroke-dasharray: 4 5; }
+  .ln { stroke: var(--brand); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
   .channels { display: flex; flex-direction: column; gap: 16px; list-style: none; margin: 0; padding: 0; }
-  .channel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 68px; }
-  .channel-name { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; }
-  .badge { display: inline-flex; align-items: center; gap: 4px; background: var(--tint); color: var(--tint-ink); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
-  .sync-note { display: none; }
+  .channel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 68px; }
+  .channel-name { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; min-width: 0; }
+  .thumb { width: 40px; height: 40px; flex: 0 0 40px; border-radius: 10px; background: #F0F4EE; border: 1px solid var(--line); overflow: hidden; display: flex; }
+  .thumb img { width: 100%; height: 100%; object-fit: contain; background: #FFFFFF; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 10px; }
+  .status { display: grid; justify-items: end; }
+  .st { grid-area: 1 / 1; display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+  .st-pending { background: #EEF1ED; color: #4A574B; opacity: 0; }
+  .st-pub { background: var(--tint); color: var(--tint-ink); }
+  .st-sold { background: var(--accent); color: #FFFFFF; opacity: 0; }
+  .st-gone { background: #ECEFEB; color: #3A443B; opacity: 0; }
+  .steps-row { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 28px; }
+  .steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; list-style: none; margin: 0; padding: 0; }
+  .step { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px 7px 7px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #4A574B; }
+  .step b { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; background: #DCE7D8; color: var(--ink); }
+  .step.s2 { background: var(--ink); color: #FFFFFF; }
+  .pause-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .pause-btn .i-play { display: none; }
+  .hero-visual.paused .pause-btn .i-play { display: block; }
+  .hero-visual.paused .pause-btn .i-pause { display: none; }
+
+  /* Animación: crear → publicar en 4 canales → vender en Vinted y retirar del resto */
+  .photo img       { animation: photoIn var(--loop) ease-in-out infinite both; }
+  .product         { animation: productPress var(--loop) ease-in-out infinite both; }
+  .created .c-new  { animation: createdNew var(--loop) ease-in-out infinite both; }
+  .created .c-sold { animation: createdSold var(--loop) ease-in-out infinite both; }
+  .ln1 { animation: line1 var(--loop) ease-in-out infinite both; }
+  .ln2 { animation: line2 var(--loop) ease-in-out infinite both; }
+  .ln3 { animation: line3 var(--loop) ease-in-out infinite both; }
+  .ln4 { animation: line4 var(--loop) ease-in-out infinite both; }
+  .ch1 .thumb img { animation: thumb1 var(--loop) ease-in-out infinite both; }
+  .ch2 .thumb img { animation: thumb2 var(--loop) ease-in-out infinite both; }
+  .ch3 .thumb img { animation: thumb3 var(--loop) ease-in-out infinite both; }
+  .ch4 .thumb img { animation: thumb4 var(--loop) ease-in-out infinite both; }
+  .ch1 .st-pending { animation: pending1 var(--loop) linear infinite both; }
+  .ch2 .st-pending { animation: pending2 var(--loop) linear infinite both; }
+  .ch3 .st-pending { animation: pending3 var(--loop) linear infinite both; }
+  .ch4 .st-pending { animation: pending4 var(--loop) linear infinite both; }
+  .ch1 .st-pub { animation: pub1 var(--loop) linear infinite both; }
+  .ch2 .st-pub { animation: pub2 var(--loop) linear infinite both; }
+  .ch3 .st-pub { animation: pub3 var(--loop) linear infinite both; }
+  .ch4 .st-pub { animation: pub4 var(--loop) linear infinite both; }
+  .ch2 .st-sold { animation: finalSold var(--loop) linear infinite both; }
+  .ch1 .st-gone, .ch3 .st-gone, .ch4 .st-gone { animation: finalGone var(--loop) linear infinite both; }
+  .ch2 { animation: cardSold var(--loop) ease-in-out infinite both; }
+  .step.s1 { animation: step1 var(--loop) linear infinite both; }
+  .step.s2 { animation: step2 var(--loop) linear infinite both; }
+  .step.s3 { animation: step3 var(--loop) linear infinite both; }
+  .hero-visual.paused, .hero-visual.paused * { animation-play-state: paused !important; }
+
+  @keyframes photoIn { 0% { opacity: 0; transform: translateY(10px) scale(0.92); } 7%, 92% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; transform: translateY(10px) scale(0.92); } }
+  @keyframes productPress {
+    0%, 10% { transform: none; box-shadow: 0 20px 40px -24px rgba(20, 60, 20, 0.35), 0 0 0 0 rgba(46, 159, 43, 0.45); }
+    12% { transform: scale(0.97); }
+    24%, 100% { transform: none; box-shadow: 0 20px 40px -24px rgba(20, 60, 20, 0.35), 0 0 0 18px rgba(46, 159, 43, 0); }
+  }
+  @keyframes createdNew { 0%, 54% { opacity: 1; } 56%, 93% { opacity: 0; } 97%, 100% { opacity: 1; } }
+  @keyframes createdSold { 0%, 54% { opacity: 0; } 56%, 90% { opacity: 1; } 94%, 100% { opacity: 0; } }
+
+  @keyframes line1 { 0%, 14% { stroke-dashoffset: 1; } 22%, 90% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 1; } }
+  @keyframes line2 { 0%, 18% { stroke-dashoffset: 1; } 26%, 90% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 1; } }
+  @keyframes line3 { 0%, 22% { stroke-dashoffset: 1; } 30%, 90% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 1; } }
+  @keyframes line4 { 0%, 26% { stroke-dashoffset: 1; } 34%, 90% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 1; } }
+
+  @keyframes thumb1 { 0%, 21% { opacity: 0; transform: scale(0.3); filter: none; } 24% { opacity: 1; transform: scale(1.15); } 26%, 59% { opacity: 1; transform: none; filter: none; } 63%, 90% { opacity: 0.35; transform: none; filter: grayscale(1); } 96%, 100% { opacity: 0; transform: scale(0.3); filter: none; } }
+  @keyframes thumb2 { 0%, 25% { opacity: 0; transform: scale(0.3); } 28% { opacity: 1; transform: scale(1.15); } 30%, 54% { opacity: 1; transform: none; } 57% { transform: scale(1.12); } 60%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: scale(0.3); } }
+  @keyframes thumb3 { 0%, 29% { opacity: 0; transform: scale(0.3); filter: none; } 32% { opacity: 1; transform: scale(1.15); } 34%, 59% { opacity: 1; transform: none; filter: none; } 63%, 90% { opacity: 0.35; transform: none; filter: grayscale(1); } 96%, 100% { opacity: 0; transform: scale(0.3); filter: none; } }
+  @keyframes thumb4 { 0%, 33% { opacity: 0; transform: scale(0.3); filter: none; } 36% { opacity: 1; transform: scale(1.15); } 38%, 59% { opacity: 1; transform: none; filter: none; } 63%, 90% { opacity: 0.35; transform: none; filter: grayscale(1); } 96%, 100% { opacity: 0; transform: scale(0.3); filter: none; } }
+
+  @keyframes pending1 { 0%, 21% { opacity: 1; } 23%, 96% { opacity: 0; } 98%, 100% { opacity: 1; } }
+  @keyframes pending2 { 0%, 25% { opacity: 1; } 27%, 96% { opacity: 0; } 98%, 100% { opacity: 1; } }
+  @keyframes pending3 { 0%, 29% { opacity: 1; } 31%, 96% { opacity: 0; } 98%, 100% { opacity: 1; } }
+  @keyframes pending4 { 0%, 33% { opacity: 1; } 35%, 96% { opacity: 0; } 98%, 100% { opacity: 1; } }
+  @keyframes pub1 { 0%, 21% { opacity: 0; } 23%, 59% { opacity: 1; } 61%, 100% { opacity: 0; } }
+  @keyframes pub2 { 0%, 25% { opacity: 0; } 27%, 54% { opacity: 1; } 56%, 100% { opacity: 0; } }
+  @keyframes pub3 { 0%, 29% { opacity: 0; } 31%, 59% { opacity: 1; } 61%, 100% { opacity: 0; } }
+  @keyframes pub4 { 0%, 33% { opacity: 0; } 35%, 59% { opacity: 1; } 61%, 100% { opacity: 0; } }
+  @keyframes finalSold { 0%, 54% { opacity: 0; } 56%, 90% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes finalGone { 0%, 59% { opacity: 0; } 61%, 90% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes cardSold { 0%, 54% { border-color: #DCE7D8; box-shadow: 0 0 0 0 rgba(46, 159, 43, 0); } 57%, 90% { border-color: #2E9F2B; box-shadow: 0 0 0 4px rgba(46, 159, 43, 0.18); } 95%, 100% { border-color: #DCE7D8; box-shadow: 0 0 0 0 rgba(46, 159, 43, 0); } }
+
+  @keyframes step1 { 0%, 13% { background: #111811; color: #FFFFFF; } 15%, 96% { background: transparent; color: #4A574B; } 98%, 100% { background: #111811; color: #FFFFFF; } }
+  @keyframes step2 { 0%, 13% { background: transparent; color: #4A574B; } 15%, 54% { background: #111811; color: #FFFFFF; } 56%, 100% { background: transparent; color: #4A574B; } }
+  @keyframes step3 { 0%, 54% { background: transparent; color: #4A574B; } 56%, 92% { background: #111811; color: #FFFFFF; } 95%, 100% { background: transparent; color: #4A574B; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-visual, .hero-visual * { animation: none !important; }
+    .pause-btn { display: none; }
+  }
   .mobile-bar { display: none; }
 
   /* Mobile */
@@ -116,17 +207,23 @@
     .hero-visual { flex-basis: 100%; }
     .fan { display: flex; flex-direction: column; align-items: stretch; }
     .product { flex-direction: row; align-items: center; gap: 14px; padding: 14px; }
-    .photo { width: 96px; height: 96px; flex: 0 0 96px; font-size: 12px; }
+    .photo { width: 104px; height: 104px; flex: 0 0 104px; }
     .product-row { flex-direction: column; align-items: flex-start; gap: 4px; }
-    .created { align-self: flex-start; border-radius: 999px; padding: 3px 10px; font-size: 12px; }
+    .created { align-self: flex-start; }
+    .created > span { border-radius: 999px; padding: 3px 10px; font-size: 12px; }
     .product-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
     .connector { display: none; }
     .connector-v { display: block; width: 100%; height: 56px; }
     .channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    .channel { flex-direction: column; align-items: flex-start; padding: 12px; min-height: 76px; }
+    .channel { flex-direction: column; align-items: flex-start; padding: 12px; min-height: 96px; }
     .channel-name { font-size: 14px; gap: 8px; }
-    .badge { font-size: 12px; padding: 3px 9px; }
-    .sync-note { display: flex; align-items: center; gap: 10px; margin-top: 14px; background: var(--ink); color: #FFFFFF; border-radius: 14px; padding: 12px 14px; font-size: 14px; }
+    .thumb { width: 34px; height: 34px; flex-basis: 34px; }
+    .status { justify-items: start; }
+    .st { font-size: 12px; padding: 3px 9px; }
+    .steps-row { margin-top: 18px; }
+    .steps { flex-direction: column; align-items: stretch; width: 100%; }
+    .step { font-size: 14px; }
+    .pause-btn { order: -1; align-self: flex-end; }
 
     body { padding-bottom: 92px; }
     .mobile-bar { display: flex; flex-direction: column; gap: 4px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 16px 14px; }
@@ -183,10 +280,11 @@
       </div>
     </div>
 
-    <div class="hero-visual" aria-label="Ejemplo: un artículo publicado en cuatro canales" role="img">
+    <div class="hero-visual" id="hero-visual">
+      <p class="sr-only">Animación: unas zapatillas se crean una vez en Ruit y se publican en Wallapop, Vinted, eBay y la tienda Shopify. Cuando se venden en Vinted, Ruit retira el anuncio del resto de canales.</p>
       <div class="fan">
         <div class="product">
-          <div class="photo">[Foto del artículo]</div>
+          <div class="photo"><img src="assets/zapatilla.png" alt="Zapatillas retro azules con tres rayas blancas" width="351" height="351"></div>
           <div class="product-info">
             <div class="product-row">
               <div>
@@ -195,27 +293,52 @@
               </div>
               <span class="price">39 €</span>
             </div>
-            <span class="created">Creado una sola vez</span>
+            <span class="created"><span class="c-new">Creado una sola vez</span><span class="c-sold" aria-hidden="true">Vendido en Vinted</span></span>
           </div>
         </div>
 
-        <svg class="connector" viewBox="0 0 72 320" fill="none" stroke="#7BC777" stroke-width="2" stroke-dasharray="4 5" aria-hidden="true">
-          <path d="M0 160 C 40 160, 32 34, 72 34"/><path d="M0 160 C 40 160, 32 118, 72 118"/><path d="M0 160 C 40 160, 32 202, 72 202"/><path d="M0 160 C 40 160, 32 286, 72 286"/>
+        <svg class="connector" viewBox="0 0 72 320" fill="none" aria-hidden="true">
+          <g class="base"><path d="M0 160 C 40 160, 32 34, 72 34"/><path d="M0 160 C 40 160, 32 118, 72 118"/><path d="M0 160 C 40 160, 32 202, 72 202"/><path d="M0 160 C 40 160, 32 286, 72 286"/></g>
+          <path class="ln ln1" pathLength="1" d="M0 160 C 40 160, 32 34, 72 34"/>
+          <path class="ln ln2" pathLength="1" d="M0 160 C 40 160, 32 118, 72 118"/>
+          <path class="ln ln3" pathLength="1" d="M0 160 C 40 160, 32 202, 72 202"/>
+          <path class="ln ln4" pathLength="1" d="M0 160 C 40 160, 32 286, 72 286"/>
         </svg>
-        <svg class="connector-v" viewBox="0 0 350 56" preserveAspectRatio="none" fill="none" stroke="#7BC777" stroke-width="2" stroke-dasharray="4 5" aria-hidden="true">
-          <path d="M175 0 C 175 30, 88 26, 88 56"/><path d="M175 0 C 175 30, 262 26, 262 56"/>
+        <svg class="connector-v" viewBox="0 0 350 56" preserveAspectRatio="none" fill="none" aria-hidden="true">
+          <g class="base"><path d="M175 0 C 175 30, 88 26, 88 56"/><path d="M175 0 C 175 30, 262 26, 262 56"/></g>
+          <path class="ln ln1" pathLength="1" d="M175 0 C 175 30, 88 26, 88 56"/>
+          <path class="ln ln2" pathLength="1" d="M175 0 C 175 30, 262 26, 262 56"/>
         </svg>
 
         <ul class="channels">
-          <li class="channel"><span class="channel-name"><span class="dot" style="background:#13C1AC"></span>Wallapop</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
-          <li class="channel"><span class="channel-name"><span class="dot" style="background:#007782"></span>Vinted</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
-          <li class="channel"><span class="channel-name"><span class="dot" style="background:#E53238"></span>eBay</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
-          <li class="channel"><span class="channel-name"><span class="dot" style="background:#5E8E3E"></span>Tu tienda Shopify</span><span class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span></li>
+          <li class="channel ch1">
+            <span class="channel-name"><span class="thumb"><img src="assets/zapatilla.png" alt=""></span><span class="dot" style="background:#13C1AC"></span>Wallapop</span>
+            <span class="status"><span class="st st-pending" aria-hidden="true">En cola</span><span class="st st-pub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span><span class="st st-gone" aria-hidden="true">Retirado</span></span>
+          </li>
+          <li class="channel ch2">
+            <span class="channel-name"><span class="thumb"><img src="assets/zapatilla.png" alt=""></span><span class="dot" style="background:#007782"></span>Vinted</span>
+            <span class="status"><span class="st st-pending" aria-hidden="true">En cola</span><span class="st st-pub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span><span class="st st-sold" aria-hidden="true">Vendido · 39 €</span></span>
+          </li>
+          <li class="channel ch3">
+            <span class="channel-name"><span class="thumb"><img src="assets/zapatilla.png" alt=""></span><span class="dot" style="background:#E53238"></span>eBay</span>
+            <span class="status"><span class="st st-pending" aria-hidden="true">En cola</span><span class="st st-pub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span><span class="st st-gone" aria-hidden="true">Retirado</span></span>
+          </li>
+          <li class="channel ch4">
+            <span class="channel-name"><span class="thumb"><img src="assets/zapatilla.png" alt=""></span><span class="dot" style="background:#5E8E3E"></span>Tu Shopify</span>
+            <span class="status"><span class="st st-pending" aria-hidden="true">En cola</span><span class="st st-pub"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Publicado</span><span class="st st-gone" aria-hidden="true">Retirado</span></span>
+          </li>
         </ul>
 
-        <div class="sync-note">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7BD877" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.7M20 4v4.7h-4.7M20 12a8 8 0 0 1-13.7 5.6L4 15.3M4 20v-4.7h4.7"/></svg>
-          <span>¿Se vende en Vinted? Ruit lo retira del resto.</span>
+        <div class="steps-row">
+          <ol class="steps" aria-hidden="true">
+            <li class="step s1"><b>1</b>Lo creas una vez</li>
+            <li class="step s2"><b>2</b>Se publica en 4 canales</li>
+            <li class="step s3"><b>3</b>Se vende y se retira del resto</li>
+          </ol>
+          <button type="button" class="pause-btn" id="pause-btn" aria-pressed="false" aria-label="Pausar animación">
+            <svg class="i-pause" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>
+            <svg class="i-play" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -235,6 +358,14 @@
       var open = nav.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+
+    var visual = document.getElementById('hero-visual');
+    var pause = document.getElementById('pause-btn');
+    pause.addEventListener('click', function () {
+      var paused = visual.classList.toggle('paused');
+      pause.setAttribute('aria-pressed', paused ? 'true' : 'false');
+      pause.setAttribute('aria-label', paused ? 'Reanudar animación' : 'Pausar animación');
     });
   })();
 </script>
